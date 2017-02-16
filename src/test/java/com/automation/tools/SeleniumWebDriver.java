@@ -1,4 +1,4 @@
-package com.advisedata.tools;
+package com.automation.tools;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;

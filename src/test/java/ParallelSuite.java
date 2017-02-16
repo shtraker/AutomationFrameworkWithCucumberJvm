@@ -1,4 +1,4 @@
-import com.advisedata.tools.Tools;
+import com.automation.tools.Tools;
 import org.junit.runners.Suite;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.RunnerBuilder;

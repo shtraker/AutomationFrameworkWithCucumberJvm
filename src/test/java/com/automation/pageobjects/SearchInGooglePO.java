@@ -1,8 +1,8 @@
-package com.advisedata.pageobjects;
+package com.automation.pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import com.advisedata.tools.Tools;
+import com.automation.tools.Tools;
 
 /**
  * Created by tsvetan.karchev on 08/11/2016.

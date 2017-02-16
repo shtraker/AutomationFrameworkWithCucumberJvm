@@ -90,7 +90,7 @@
                         <configuration>
                             <!-- Mandatory -->
                             <!-- comma separated list of package names to scan for glue code -->
-                            <glue>com.advisedata.steps</glue>
+                            <glue>com.automation.steps</glue>
                             <!-- These are the default values -->
                             <!-- Where to output the generated Junit tests -->
                             <outputDirectory>src/test/java/</outputDirectory>

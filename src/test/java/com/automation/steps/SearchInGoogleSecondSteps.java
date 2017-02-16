@@ -1,10 +1,12 @@
-package com.advisedata.steps;
+package com.automation.steps;
 
-import com.advisedata.tools.ThreadLocalCookieStore;
-import com.advisedata.tools.Tools;
+import com.automation.tools.ThreadLocalCookieStore;
+import com.automation.tools.Tools;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+
+import static com.automation.tools.Tools.destroyDriver;
 
 public class SearchInGoogleSecondSteps extends Tools {
 
