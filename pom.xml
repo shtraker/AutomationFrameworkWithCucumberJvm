@@ -1,0 +1,162 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.donceci</groupId>
+    <artifactId>donceci-testing</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>donceci-testing</name>
+    <url>http://maven.apache.org</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>1.1.8</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>1.1.8</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>2.53.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-remote-driver</artifactId>
+            <version>2.53.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.temyers</groupId>
+            <artifactId>cucumber-jvm-parallel-plugin</artifactId>
+            <version>0.1.2</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-surefire-plugin</artifactId>-->
+                <!--<version>2.19.1</version>-->
+            <!--</plugin>-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>RunInParallelTest</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.temyers</groupId>
+                <artifactId>cucumber-jvm-parallel-plugin</artifactId>
+                <version>0.1.2</version>
+                <executions>
+                    <execution>
+                        <id>generateRunners</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generateRunners</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Mandatory -->
+                            <!-- comma separated list of package names to scan for glue code -->
+                            <glue>com.advisedata.steps</glue>
+                            <!-- These are the default values -->
+                            <!-- Where to output the generated Junit tests -->
+                            <outputDirectory>src/test/java/</outputDirectory>
+                            <!-- The diectory containing your feature files.  -->
+                            <featuresDirectory>src/test/resources/features/</featuresDirectory>
+                            <!-- Directory where the cucumber report files shall be written  -->
+                            <cucumberOutputDir>target</cucumberOutputDir>
+                            <!-- comma separated list of output formats -->
+                            <format>json</format>
+                            <!-- CucumberOptions.strict property -->
+                            <strict>true</strict>
+                            <!-- CucumberOptions.monochrome property -->
+                            <monochrome>true</monochrome>
+                            <!-- The tags to run, maps to CucumberOptions.tags property -->
+                            <tags>"@complete"</tags>
+                            <!-- If set to true, only feature files containing the required tags shall be generated. -->
+                            <!-- Excluded tags (~@notMe) are ignored. -->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>com.github.temyers</groupId>-->
+                <!--<artifactId>cucumber-jvm-parallel-plugin</artifactId>-->
+                <!--<version>2.0.0</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>generateRunners</id>-->
+                        <!--<phase>generate-test-sources</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>generateRunners</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--&lt;!&ndash; Mandatory &ndash;&gt;-->
+                            <!--&lt;!&ndash; comma separated list of package names to scan for glue code &ndash;&gt;-->
+                            <!--<glue>com.advisedata.steps</glue>-->
+                            <!--&lt;!&ndash; These are optional, with the default values &ndash;&gt;-->
+                            <!--&lt;!&ndash; Where to output the generated tests &ndash;&gt;-->
+                            <!--<outputDirectory>src/test/java/</outputDirectory>-->
+                            <!--&lt;!&ndash; The diectory, which must be in the root of the runtime classpath, containing your feature files.  &ndash;&gt;-->
+                            <!--<featuresDirectory>src/test/resources/features/</featuresDirectory>-->
+                            <!--&lt;!&ndash; Directory where the cucumber report files shall be written  &ndash;&gt;-->
+                            <!--<cucumberOutputDir>target</cucumberOutputDir>-->
+                            <!--&lt;!&ndash; comma separated list of output formats &ndash;&gt;-->
+                            <!--<format>json</format>-->
+                            <!--&lt;!&ndash; CucumberOptions.strict property &ndash;&gt;-->
+                            <!--<strict>true</strict>-->
+                            <!--&lt;!&ndash; CucumberOptions.monochrome property &ndash;&gt;-->
+                            <!--<monochrome>true</monochrome>-->
+                            <!--&lt;!&ndash; The tags to run, maps to CucumberOptions.tags property &ndash;&gt;-->
+                            <!--<tags></tags>-->
+                            <!--&lt;!&ndash; If set to true, only feature files containing the required tags shall be generated. &ndash;&gt;-->
+                            <!--<filterFeaturesByTags>false</filterFeaturesByTags>-->
+                            <!--&lt;!&ndash; Generate TestNG runners instead of JUnit ones. &ndash;&gt;-->
+                            <!--<useTestNG>false</useTestNG>-->
+                            <!--&lt;!&ndash; The naming scheme to use for the generated test classes.  One of 'simple' or 'feature-title' &ndash;&gt;-->
+                            <!--<namingScheme>simple</namingScheme>-->
+                            <!--&lt;!&ndash; The class naming pattern to use.  Only required/used if naming scheme is 'pattern'.&ndash;&gt;-->
+                            <!--<namingPattern>Parallel{c}IT</namingPattern>-->
+                            <!--&lt;!&ndash; One of [SCENARIO, FEATURE]. SCENARIO generates one runner per scenario.  FEATURE generates a runner per feature. &ndash;&gt;-->
+                            <!--<parallelScheme>SCENARIO</parallelScheme>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
+        </plugins>
+    </build>
+
+</project>
