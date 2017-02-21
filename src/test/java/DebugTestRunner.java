@@ -8,7 +8,7 @@ import cucumber.api.junit.Cucumber;
         features = {"./src/test/resources/features/SearchInGoogleForHotChicks.feature"},
         format = { "pretty"},
         monochrome = true,
-        glue = { "com.advisedata.steps" }
+        glue = { "com.automation.steps" }
 )
 public class DebugTestRunner {
 }

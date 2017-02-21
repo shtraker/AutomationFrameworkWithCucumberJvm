@@ -31,8 +31,6 @@ public class Tools {
     static {
         if (System.getProperty("envUrl") == null)
             envUrl = "http://google.com";
-        if (System.getProperty("seleniumPort") == null)
-            seleniumPort = "4000";
     }
 
     static synchronized public void buildDriver() {
