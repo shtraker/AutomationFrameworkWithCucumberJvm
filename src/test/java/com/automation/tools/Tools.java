@@ -48,14 +48,27 @@ public class Tools {
     }
 
     static synchronized public WebElement findElementBy(By by) {
-        try {Thread.sleep(1000);} catch (Exception e) {}
-        SeleniumWebDriver.getWebDriver().manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-        WebDriverWait wait = new WebDriverWait(SeleniumWebDriver.getWebDriver(), 10);
         WebElement element = null;
-        element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
-        SeleniumWebDriver.getWebDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        int br=1;
+        while(br<=5) {
+            try {
+                br++;
+                SeleniumWebDriver.getWebDriver().manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+                WebDriverWait wait = new WebDriverWait(SeleniumWebDriver.getWebDriver(), 2);
+                element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+                SeleniumWebDriver.getWebDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+                return element;
+            } catch (Exception e) {
+                if (br==5) {
+                    destroyDriver();
+                    throw e;
+                }
+                try {Thread.sleep(1000);} catch (Exception exc) {}
+            }
+        }
         return element;
     }
+
 
     static public void click(WebElement element) {
         doAction(element,"click","");
@@ -75,9 +88,10 @@ public class Tools {
     }
 
     static private String doAction(WebElement element, String action, String text){
-        int br = 1;
+        int br = 0;
         String result = null;
-        while (br<=3) {
+        while (br<=5) {
+            br++;
             try {
                 switch (action){
                     case "click": element.click();break;
@@ -86,13 +100,14 @@ public class Tools {
                     case "getAttribute": result = element.getAttribute(text);break;
                     default: Assert.assertTrue("There is no such Action",false);
                 }
-                br=30;
+                br=6;
             }
             catch (Exception e) {
-                System.out.println("EXCEPTION:"+e);
-                br++;
-                try {Thread.sleep(100);} catch (Exception ex) {}
-                if (br==10) throw e;
+                if (br==5) {
+                    destroyDriver();
+                    throw e;
+                }
+                try {Thread.sleep(1000);} catch (Exception exc) {}
             }
         }
         return result;
