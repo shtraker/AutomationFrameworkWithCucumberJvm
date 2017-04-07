@@ -24,8 +24,8 @@ public class SeleniumWebDriver {
         public synchronized WebDriver initialValue() {
             FirefoxProfile profile = new FirefoxProfile();
             profile.setPreference("network.http.phishy-userpass-length", 255);
-            if (isLinux()) System.setProperty("webdriver.gecko.driver", "/home/ceco/geckodriver");
-            else System.setProperty("webdriver.gecko.driver", "D:\\geckodriver\\geckodriver.exe");
+//            if (isLinux()) System.setProperty("webdriver.gecko.driver", "/home/ceco/geckodriver");
+//            else System.setProperty("webdriver.gecko.driver", "D:\\geckodriver\\geckodriver.exe");
             return new FirefoxDriver(profile);
         }
     };
@@ -37,8 +37,8 @@ public class SeleniumWebDriver {
     static public synchronized WebDriver setWebDriver() {
         FirefoxProfile profile = new FirefoxProfile();
         profile.setPreference("network.http.phishy-userpass-length", 255);
-        if (isLinux()) System.setProperty("webdriver.gecko.driver", "/home/ceco/geckodriver");
-        else System.setProperty("webdriver.gecko.driver", "D:\\geckodriver\\geckodriver.exe");
+//        if (isLinux()) System.setProperty("webdriver.gecko.driver", "/home/ceco/geckodriver");
+//        else System.setProperty("webdriver.gecko.driver", "D:\\geckodriver\\geckodriver.exe");
         DesiredCapabilities capability = DesiredCapabilities.firefox();
         WebDriver webDriver2 = new FirefoxDriver(profile);
         webDriver.set(webDriver2);
